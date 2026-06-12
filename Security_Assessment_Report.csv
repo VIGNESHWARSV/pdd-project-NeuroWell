@@ -1,0 +1,30 @@
+# Executive Security Assessment Report
+
+This report summarizes the security code review of the backend codebase of the NeuroWell AI project.
+
+## 1. Vulnerability Findings Table
+
+| Severity | File Path | Vulnerability Type | Description | Recommended Remediation |
+| :--- | :--- | :--- | :--- | :--- |
+| **Critical** | `backend/server.js` | Broken Authentication / Missing Auth Checks | Except for login/signup, none of the endpoints (profile, goals, questionnaire, moods, etc.) perform token validation or check authentication headers. | Implement a middleware (e.g., verifying JWTs) and apply it to secure all user data routes. |
+| **Critical** | `backend/server.js` | Broken Access Control / IDOR | Endpoints like `/api/user/profile/:userId` and `/api/user/mood/:userId` allow fetching details of any user by simply changing the `userId` parameter in the URL. | Resolve the user identity from the verified session/JWT token rather than accepting client-supplied URL parameters or request bodies. |
+| **High** | `backend/server.js` | Weak Authentication (Plaintext Passwords) | User credentials in `/api/auth/signup` are parsed but passwords are not hashed or stored securely. | Use a library like `bcrypt` or `argon2` to hash passwords with a strong salt before comparison/storage. |
+| **High** | `backend/server.js` | Insecure Session Management (Static JWT) | The server returns a hardcoded mock token `"mock-jwt-token-777"` for all authentication attempts with no expiration, signature verification, or revocation support. | Use a standard library (like `jsonwebtoken`) to generate, sign, and verify tokens using a strong, environment-configured secret key. |
+| **Medium** | `backend/server.js` | CORS Misconfiguration | The server uses `app.use(cors())` which defaults to wildcard headers (`Access-Control-Allow-Origin: *`), permitting any malicious origin to initiate requests. | Restrict CORS allowed origins to only the trusted domain/origin hosting the frontend. |
+| **Medium** | `backend/server.js` | Lack of Input Validation & Sanitization | The application processes inputs like `email`, `password`, `userId`, `notes` directly without schema validation or sanitization. | Use validation middleware (e.g., `joi` or `zod`) to strictly validate types, patterns, and sizes of all request payloads. |
+| **Medium** | `backend/server.js` | Missing Rate Limiting & Request Size Limits | There are no protections against brute-forcing auth endpoints or memory exhaustion via massive requests. | Implement rate-limiting middleware (e.g., `express-rate-limit`) and restrict payload sizes in `express.json()`. |
+| **Low** | `backend/server.js` | Missing Security Headers | Standard defensive HTTP headers (e.g., `Helmet` for HSTS, CSP, X-Frame-Options) are not implemented. | Integrate `helmet` middleware into the Express application to set appropriate security-related response headers. |
+
+---
+
+## 2. Security Analysis & Threat Profiles
+
+### A. Authentication Deficiencies
+*   **Unauthenticated Endpoints**: All API endpoints except `/api/auth/login` and `/api/auth/signup` do not validate requests. Any request with any dummy headers can read/write database values.
+*   **Token Lifecycle**: The hardcoded token is stateless, never expires, and cannot be revoked, representing an infinite session duration.
+
+### B. Access Control (IDOR)
+*   The database is structured in-memory around arbitrary client-provided `userId` strings. A malicious caller can access records belonging to any other user simply by iterating integers or modifying request parameters.
+
+### C. Sensitive Data Storage
+*   If migrated to a persistent database (e.g., SQL/NoSQL) in production, queries written to trust client-supplied raw parameters directly would be highly vulnerable to SQL/NoSQL Injection.

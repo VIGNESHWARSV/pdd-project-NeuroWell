@@ -1,0 +1,118 @@
+[debug] [2026-06-12T08:38:57.150Z] ----------------------------------------------------------------------
+[debug] [2026-06-12T08:38:57.152Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vigne\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --debug
+[debug] [2026-06-12T08:38:57.152Z] CLI Version:   15.17.0
+[debug] [2026-06-12T08:38:57.152Z] Platform:      win32
+[debug] [2026-06-12T08:38:57.152Z] Node Version:  v24.13.1
+[debug] [2026-06-12T08:38:57.152Z] Time:          Fri Jun 12 2026 14:08:57 GMT+0530 (India Standard Time)
+[debug] [2026-06-12T08:38:57.152Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-12T08:38:58.227Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-12T08:38:58.228Z] > authorizing via signed-in user (vigneshwarsv0714@gmail.com)
+[debug] [2026-06-12T08:38:58.228Z] [iam] checking project neurowellai-49389 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-12T08:38:58.228Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:38:58.229Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:38:58.229Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/neurowellai-49389:testIamPermissions [none]
+[debug] [2026-06-12T08:38:58.230Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/neurowellai-49389:testIamPermissions  x-goog-user-project=neurowellai-49389
+[debug] [2026-06-12T08:38:58.230Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/neurowellai-49389:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-12T08:38:59.759Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/neurowellai-49389:testIamPermissions 200
+[debug] [2026-06-12T08:38:59.759Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/neurowellai-49389:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-12T08:38:59.760Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:38:59.760Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:38:59.761Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/neurowellai-49389 [none]
+[debug] [2026-06-12T08:39:01.121Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/neurowellai-49389 200
+[debug] [2026-06-12T08:39:01.122Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/neurowellai-49389 {"projectId":"neurowellai-49389","projectNumber":"296899830526","displayName":"NeuroWellAI","name":"projects/neurowellai-49389","resources":{"hostingSite":"neurowellai-49389"},"state":"ACTIVE","etag":"1_4ffda575-e050-4a2f-98c3-9977aa0fdd3f"}
+[info] 
+[info] === Deploying to 'neurowellai-49389'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-06-12T08:39:01.127Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:01.127Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:01.127Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/neurowellai-49389/sites/neurowellai-49389 [none]
+[debug] [2026-06-12T08:39:02.216Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/neurowellai-49389/sites/neurowellai-49389 200
+[debug] [2026-06-12T08:39:02.216Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/neurowellai-49389/sites/neurowellai-49389 {"name":"projects/neurowellai-49389/sites/neurowellai-49389","defaultUrl":"https://neurowellai-49389.web.app","type":"DEFAULT_SITE"}
+[debug] [2026-06-12T08:39:02.221Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:02.222Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:02.222Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions [none]
+[debug] [2026-06-12T08:39:02.222Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-12T08:39:03.177Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions 200
+[debug] [2026-06-12T08:39:03.177Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions {"name":"projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[neurowellai-49389]: beginning deploy... 
+[info] i  hosting[neurowellai-49389]: found 8 files in frontend 
+[debug] [2026-06-12T08:39:03.192Z] [hosting] uploading with 200 concurrency
+[debug] [2026-06-12T08:39:03.194Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:03.194Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:03.194Z] [hosting] hash cache [ZnJvbnRlbmQ] stored for 8 files
+[debug] [2026-06-12T08:39:03.195Z] [hosting][hash queue][FINAL] {"max":0,"min":0,"avg":0,"active":0,"complete":8,"success":8,"errored":0,"retried":0,"total":8,"elapsed":2}
+[debug] [2026-06-12T08:39:03.195Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398:populateFiles [none]
+[debug] [2026-06-12T08:39:03.195Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398:populateFiles {"files":{"/style.css":"1a499ccd93298e8ad8a8aa43ce61cdcbe6e62688870e230197e91ba44dce8577","/logo.png":"3ab5bfc5e01bc05b5593eb1e1639988bece44f0f664dcbc6ffbdd738828bd880","/index.html":"c63f7943e0a121405045dbf83d27a170f5771b9f785f20843cb1019825c4f8f0","/firebase-main.js":"a5766cb317c3808cb63e000066bd7b1475ebdc98a033904581fc7ee7680a2bd0","/firebase-config.js":"961a0ebfa36baefb82fb56e65bd185507b57b109e9171f3aa917f831be7a3358","/database.js":"050daae8256e050c40adb3b2c508ca50e70e59bde9ae4c89dc44701be5d9e2f9","/authentication.js":"e018e8919d739c1a06a33c6533b329fff1134d68c8d6490d650141a39e7c2f2a","/app.js":"84dbb3a8a90122d0e56ceaa3202b4eb4f5c14240a15c87b6c55b340710fec454"}}
+[debug] [2026-06-12T08:39:03.986Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398:populateFiles 200
+[debug] [2026-06-12T08:39:03.987Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/neurowellai-49389/versions/a8a6e128adc86398/files"}
+[debug] [2026-06-12T08:39:03.987Z] [hosting][populate queue][FINAL] {"max":794,"min":794,"avg":794,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":794}
+[debug] [2026-06-12T08:39:03.987Z] [hosting] uploads queued: 0
+[debug] [2026-06-12T08:39:03.988Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1781253543988}
+[info] i  hosting: upload complete 
+[info] +  hosting[neurowellai-49389]: file upload complete 
+[debug] [2026-06-12T08:39:03.988Z] [hosting] deploy completed after 807ms
+[debug] [2026-06-12T08:39:03.989Z] [
+  {
+    "config": {
+      "public": "frontend",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "**/*.py",
+        "**/*.sh",
+        "**/*.exe",
+        "**/*.bat",
+        "**/*.cmd",
+        "**/*.bin",
+        "**/*.out",
+        "**/*.class",
+        "**/*.jar",
+        "**/*.gradle",
+        "**/*.xml",
+        "server.js",
+        "package.json",
+        "package-lock.json",
+        "firestore.rules",
+        "android/**",
+        "selenium-tests/**",
+        "Vulnerability Test Results/**",
+        "*.csv",
+        "*.md"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "neurowellai-49389"
+    },
+    "version": "projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398"
+  }
+]
+[info] i  hosting[neurowellai-49389]: finalizing version... 
+[debug] [2026-06-12T08:39:03.991Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:03.992Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:03.992Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions/a8a6e128adc86398 updateMask=status%2Cconfig
+[debug] [2026-06-12T08:39:03.992Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions/a8a6e128adc86398 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-06-12T08:39:04.663Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions/a8a6e128adc86398 200
+[debug] [2026-06-12T08:39:04.664Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/versions/a8a6e128adc86398 {"name":"projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-12T08:39:02.322153Z","createUser":{"email":"vigneshwarsv0714@gmail.com"},"finalizeTime":"2026-06-12T08:39:04.242517Z","finalizeUser":{"email":"vigneshwarsv0714@gmail.com"}}
+[debug] [2026-06-12T08:39:04.664Z] [hosting] finalized version for neurowellai-49389:[object Object]
+[info] +  hosting[neurowellai-49389]: version finalized 
+[info] i  hosting[neurowellai-49389]: releasing new version... 
+[debug] [2026-06-12T08:39:04.666Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:04.666Z] Checked if tokens are valid: true, expires at: 1781255349958
+[debug] [2026-06-12T08:39:04.666Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/channels/live/releases versionName=projects%2F296899830526%2Fsites%2Fneurowellai-49389%2Fversions%2Fa8a6e128adc86398
+[debug] [2026-06-12T08:39:04.666Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/channels/live/releases {}
+[debug] [2026-06-12T08:39:05.415Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/channels/live/releases 200
+[debug] [2026-06-12T08:39:05.416Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/neurowellai-49389/channels/live/releases {"name":"projects/296899830526/sites/neurowellai-49389/channels/live/releases/1781253544287000","version":{"name":"projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-12T08:39:02.322153Z","createUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"},"finalizeTime":"2026-06-12T08:39:04.242517Z","finalizeUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"}},"type":"DEPLOY","releaseTime":"2026-06-12T08:39:04.287Z","releaseUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"}}
+[debug] [2026-06-12T08:39:05.416Z] [hosting] release: {"name":"projects/296899830526/sites/neurowellai-49389/channels/live/releases/1781253544287000","version":{"name":"projects/296899830526/sites/neurowellai-49389/versions/a8a6e128adc86398","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-12T08:39:02.322153Z","createUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"},"finalizeTime":"2026-06-12T08:39:04.242517Z","finalizeUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"}},"type":"DEPLOY","releaseTime":"2026-06-12T08:39:04.287Z","releaseUser":{"email":"vigneshwarsv0714@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocL2LZlQ6nShVoia5M247nQHOkqnic5YfPGpp_9o2juJZY0YYOJL"}}
+[info] +  hosting[neurowellai-49389]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/neurowellai-49389/overview
+[info] Hosting URL: https://neurowellai-49389.web.app
