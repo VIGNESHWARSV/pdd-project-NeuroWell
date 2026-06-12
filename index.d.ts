@@ -1,9 +1,3 @@
-{
-	"all": true,
-	"check-coverage": false,
-	"reporter": ["text-summary", "text", "html", "json"],
-	"exclude": [
-		"coverage",
-		"test"
-	]
-}
+declare const EvalError: EvalErrorConstructor;
+
+export = EvalError;
