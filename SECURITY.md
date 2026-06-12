@@ -1,317 +1,216 @@
-# cookie
+v1.3.2 / 2025-12-01
+==================
 
-[![NPM Version][npm-version-image]][npm-url]
-[![NPM Downloads][npm-downloads-image]][npm-url]
-[![Node.js Version][node-image]][node-url]
-[![Build Status][ci-image]][ci-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
+  * deps: use tilde notation for dependencies
+  * deps: statuses@~2.0.2
 
-Basic HTTP cookie parser and serializer for HTTP servers.
+v1.3.1 / 2024-09-11
+==================
 
-## Installation
+  * deps: encodeurl@~2.0.0
 
-This is a [Node.js](https://nodejs.org/en/) module available through the
-[npm registry](https://www.npmjs.com/). Installation is done using the
-[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
+v1.3.0 / 2024-09-03
+==================
 
-```sh
-$ npm install cookie
-```
+  * ignore status message for HTTP/2 (#53)
 
-## API
+v1.2.1 / 2024-09-02
+==================
 
-```js
-var cookie = require('cookie');
-```
+  * Gracefully handle when handling an error and socket is null
 
-### cookie.parse(str, options)
+1.2.0 / 2022-03-22
+==================
 
-Parse an HTTP `Cookie` header string and returning an object of all cookie name-value pairs.
-The `str` argument is the string representing a `Cookie` header value and `options` is an
-optional object containing additional parsing options.
+  * Remove set content headers that break response
+  * deps: on-finished@2.4.1
+  * deps: statuses@2.0.1
+    - Rename `425 Unordered Collection` to standard `425 Too Early`
 
-```js
-var cookies = cookie.parse('foo=bar; equation=E%3Dmc%5E2');
-// { foo: 'bar', equation: 'E=mc^2' }
-```
+1.1.2 / 2019-05-09
+==================
 
-#### Options
+  * Set stricter `Content-Security-Policy` header
+  * deps: parseurl@~1.3.3
+  * deps: statuses@~1.5.0
 
-`cookie.parse` accepts these properties in the options object.
+1.1.1 / 2018-03-06
+==================
 
-##### decode
+  * Fix 404 output for bad / missing pathnames
+  * deps: encodeurl@~1.0.2
+    - Fix encoding `%` as last character
+  * deps: statuses@~1.4.0
 
-Specifies a function that will be used to decode a cookie's value. Since the value of a cookie
-has a limited character set (and must be a simple string), this function can be used to decode
-a previously-encoded cookie value into a JavaScript string or other object.
+1.1.0 / 2017-09-24
+==================
 
-The default function is the global `decodeURIComponent`, which will decode any URL-encoded
-sequences into their byte representations.
+  * Use `res.headersSent` when available
 
-**note** if an error is thrown from this function, the original, non-decoded cookie value will
-be returned as the cookie's value.
+1.0.6 / 2017-09-22
+==================
 
-### cookie.serialize(name, value, options)
+  * deps: debug@2.6.9
 
-Serialize a cookie name-value pair into a `Set-Cookie` header string. The `name` argument is the
-name for the cookie, the `value` argument is the value to set the cookie to, and the `options`
-argument is an optional object containing additional serialization options.
+1.0.5 / 2017-09-15
+==================
 
-```js
-var setCookie = cookie.serialize('foo', 'bar');
-// foo=bar
-```
+  * deps: parseurl@~1.3.2
+    - perf: reduce overhead for full URLs
+    - perf: unroll the "fast-path" `RegExp`
 
-#### Options
+1.0.4 / 2017-08-03
+==================
 
-`cookie.serialize` accepts these properties in the options object.
+  * deps: debug@2.6.8
 
-##### domain
+1.0.3 / 2017-05-16
+==================
 
-Specifies the value for the [`Domain` `Set-Cookie` attribute][rfc-6265-5.2.3]. By default, no
-domain is set, and most clients will consider the cookie to apply to only the current domain.
+  * deps: debug@2.6.7
+    - deps: ms@2.0.0
 
-##### encode
+1.0.2 / 2017-04-22
+==================
 
-Specifies a function that will be used to encode a cookie's value. Since value of a cookie
-has a limited character set (and must be a simple string), this function can be used to encode
-a value into a string suited for a cookie's value.
+  * deps: debug@2.6.4
+    - deps: ms@0.7.3
 
-The default function is the global `encodeURIComponent`, which will encode a JavaScript string
-into UTF-8 byte sequences and then URL-encode any that fall outside of the cookie range.
+1.0.1 / 2017-03-21
+==================
 
-##### expires
+  * Fix missing `</html>` in HTML document
+  * deps: debug@2.6.3
+    - Fix: `DEBUG_MAX_ARRAY_LENGTH`
 
-Specifies the `Date` object to be the value for the [`Expires` `Set-Cookie` attribute][rfc-6265-5.2.1].
-By default, no expiration is set, and most clients will consider this a "non-persistent cookie" and
-will delete it on a condition like exiting a web browser application.
+1.0.0 / 2017-02-15
+==================
 
-**note** the [cookie storage model specification][rfc-6265-5.3] states that if both `expires` and
-`maxAge` are set, then `maxAge` takes precedence, but it is possible not all clients by obey this,
-so if both are set, they should point to the same date and time.
+  * Fix exception when `err` cannot be converted to a string
+  * Fully URL-encode the pathname in the 404 message
+  * Only include the pathname in the 404 message
+  * Send complete HTML document
+  * Set `Content-Security-Policy: default-src 'self'` header
+  * deps: debug@2.6.1
+    - Allow colors in workers
+    - Deprecated `DEBUG_FD` environment variable set to `3` or higher
+    - Fix error when running under React Native
+    - Use same color for same namespace
+    - deps: ms@0.7.2
 
-##### httpOnly
+0.5.1 / 2016-11-12
+==================
 
-Specifies the `boolean` value for the [`HttpOnly` `Set-Cookie` attribute][rfc-6265-5.2.6]. When truthy,
-the `HttpOnly` attribute is set, otherwise it is not. By default, the `HttpOnly` attribute is not set.
+  * Fix exception when `err.headers` is not an object
+  * deps: statuses@~1.3.1
+  * perf: hoist regular expressions
+  * perf: remove duplicate validation path
 
-**note** be careful when setting this to `true`, as compliant clients will not allow client-side
-JavaScript to see the cookie in `document.cookie`.
+0.5.0 / 2016-06-15
+==================
 
-##### maxAge
+  * Change invalid or non-numeric status code to 500
+  * Overwrite status message to match set status code
+  * Prefer `err.statusCode` if `err.status` is invalid
+  * Set response headers from `err.headers` object
+  * Use `statuses` instead of `http` module for status messages
+    - Includes all defined status messages
 
-Specifies the `number` (in seconds) to be the value for the [`Max-Age` `Set-Cookie` attribute][rfc-6265-5.2.2].
-The given number will be converted to an integer by rounding down. By default, no maximum age is set.
+0.4.1 / 2015-12-02
+==================
 
-**note** the [cookie storage model specification][rfc-6265-5.3] states that if both `expires` and
-`maxAge` are set, then `maxAge` takes precedence, but it is possible not all clients by obey this,
-so if both are set, they should point to the same date and time.
+  * deps: escape-html@~1.0.3
+    - perf: enable strict mode
+    - perf: optimize string replacement
+    - perf: use faster string coercion
 
-##### partitioned
+0.4.0 / 2015-06-14
+==================
 
-Specifies the `boolean` value for the [`Partitioned` `Set-Cookie`](rfc-cutler-httpbis-partitioned-cookies)
-attribute. When truthy, the `Partitioned` attribute is set, otherwise it is not. By default, the
-`Partitioned` attribute is not set.
+  * Fix a false-positive when unpiping in Node.js 0.8
+  * Support `statusCode` property on `Error` objects
+  * Use `unpipe` module for unpiping requests
+  * deps: escape-html@1.0.2
+  * deps: on-finished@~2.3.0
+    - Add defined behavior for HTTP `CONNECT` requests
+    - Add defined behavior for HTTP `Upgrade` requests
+    - deps: ee-first@1.1.1
+  * perf: enable strict mode
+  * perf: remove argument reassignment
 
-**note** This is an attribute that has not yet been fully standardized, and may change in the future.
-This also means many clients may ignore this attribute until they understand it.
+0.3.6 / 2015-05-11
+==================
 
-More information about can be found in [the proposal](https://github.com/privacycg/CHIPS).
+  * deps: debug@~2.2.0
+    - deps: ms@0.7.1
 
-##### path
+0.3.5 / 2015-04-22
+==================
 
-Specifies the value for the [`Path` `Set-Cookie` attribute][rfc-6265-5.2.4]. By default, the path
-is considered the ["default path"][rfc-6265-5.1.4].
+  * deps: on-finished@~2.2.1
+    - Fix `isFinished(req)` when data buffered
 
-##### priority
+0.3.4 / 2015-03-15
+==================
 
-Specifies the `string` to be the value for the [`Priority` `Set-Cookie` attribute][rfc-west-cookie-priority-00-4.1].
+  * deps: debug@~2.1.3
+    - Fix high intensity foreground color for bold
+    - deps: ms@0.7.0
 
-  - `'low'` will set the `Priority` attribute to `Low`.
-  - `'medium'` will set the `Priority` attribute to `Medium`, the default priority when not set.
-  - `'high'` will set the `Priority` attribute to `High`.
+0.3.3 / 2015-01-01
+==================
 
-More information about the different priority levels can be found in
-[the specification][rfc-west-cookie-priority-00-4.1].
+  * deps: debug@~2.1.1
+  * deps: on-finished@~2.2.0
 
-**note** This is an attribute that has not yet been fully standardized, and may change in the future.
-This also means many clients may ignore this attribute until they understand it.
+0.3.2 / 2014-10-22
+==================
 
-##### sameSite
+  * deps: on-finished@~2.1.1
+    - Fix handling of pipelined requests
 
-Specifies the `boolean` or `string` to be the value for the [`SameSite` `Set-Cookie` attribute][rfc-6265bis-09-5.4.7].
+0.3.1 / 2014-10-16
+==================
 
-  - `true` will set the `SameSite` attribute to `Strict` for strict same site enforcement.
-  - `false` will not set the `SameSite` attribute.
-  - `'lax'` will set the `SameSite` attribute to `Lax` for lax same site enforcement.
-  - `'none'` will set the `SameSite` attribute to `None` for an explicit cross-site cookie.
-  - `'strict'` will set the `SameSite` attribute to `Strict` for strict same site enforcement.
+  * deps: debug@~2.1.0
+    - Implement `DEBUG_FD` env variable support
 
-More information about the different enforcement levels can be found in
-[the specification][rfc-6265bis-09-5.4.7].
+0.3.0 / 2014-09-17
+==================
 
-**note** This is an attribute that has not yet been fully standardized, and may change in the future.
-This also means many clients may ignore this attribute until they understand it.
+  * Terminate in progress response only on error
+  * Use `on-finished` to determine request status
 
-##### secure
+0.2.0 / 2014-09-03
+==================
 
-Specifies the `boolean` value for the [`Secure` `Set-Cookie` attribute][rfc-6265-5.2.5]. When truthy,
-the `Secure` attribute is set, otherwise it is not. By default, the `Secure` attribute is not set.
+  * Set `X-Content-Type-Options: nosniff` header
+  * deps: debug@~2.0.0
 
-**note** be careful when setting this to `true`, as compliant clients will not send the cookie back to
-the server in the future if the browser does not have an HTTPS connection.
+0.1.0 / 2014-07-16
+==================
 
-## Example
+  * Respond after request fully read
+    - prevents hung responses and socket hang ups
+  * deps: debug@1.0.4
 
-The following example uses this module in conjunction with the Node.js core HTTP server
-to prompt a user for their name and display it back on future visits.
+0.0.3 / 2014-07-11
+==================
 
-```js
-var cookie = require('cookie');
-var escapeHtml = require('escape-html');
-var http = require('http');
-var url = require('url');
+  * deps: debug@1.0.3
+    - Add support for multiple wildcards in namespaces
 
-function onRequest(req, res) {
-  // Parse the query string
-  var query = url.parse(req.url, true, true).query;
+0.0.2 / 2014-06-19
+==================
 
-  if (query && query.name) {
-    // Set a new cookie with the name
-    res.setHeader('Set-Cookie', cookie.serialize('name', String(query.name), {
-      httpOnly: true,
-      maxAge: 60 * 60 * 24 * 7 // 1 week
-    }));
+  * Handle invalid status codes
 
-    // Redirect back after setting cookie
-    res.statusCode = 302;
-    res.setHeader('Location', req.headers.referer || '/');
-    res.end();
-    return;
-  }
+0.0.1 / 2014-06-05
+==================
 
-  // Parse the cookies on the request
-  var cookies = cookie.parse(req.headers.cookie || '');
+  * deps: debug@1.0.2
 
-  // Get the visitor name set in the cookie
-  var name = cookies.name;
+0.0.0 / 2014-06-05
+==================
 
-  res.setHeader('Content-Type', 'text/html; charset=UTF-8');
-
-  if (name) {
-    res.write('<p>Welcome back, <b>' + escapeHtml(name) + '</b>!</p>');
-  } else {
-    res.write('<p>Hello, new visitor!</p>');
-  }
-
-  res.write('<form method="GET">');
-  res.write('<input placeholder="enter your name" name="name"> <input type="submit" value="Set Name">');
-  res.end('</form>');
-}
-
-http.createServer(onRequest).listen(3000);
-```
-
-## Testing
-
-```sh
-$ npm test
-```
-
-## Benchmark
-
-```
-$ npm run bench
-
-> cookie@0.5.0 bench
-> node benchmark/index.js
-
-  node@18.18.2
-  acorn@8.10.0
-  ada@2.6.0
-  ares@1.19.1
-  brotli@1.0.9
-  cldr@43.1
-  icu@73.2
-  llhttp@6.0.11
-  modules@108
-  napi@9
-  nghttp2@1.57.0
-  nghttp3@0.7.0
-  ngtcp2@0.8.1
-  openssl@3.0.10+quic
-  simdutf@3.2.14
-  tz@2023c
-  undici@5.26.3
-  unicode@15.0
-  uv@1.44.2
-  uvwasi@0.0.18
-  v8@10.2.154.26-node.26
-  zlib@1.2.13.1-motley
-
-> node benchmark/parse-top.js
-
-  cookie.parse - top sites
-
-  14 tests completed.
-
-  parse accounts.google.com x 2,588,913 ops/sec ±0.74% (186 runs sampled)
-  parse apple.com           x 2,370,002 ops/sec ±0.69% (186 runs sampled)
-  parse cloudflare.com      x 2,213,102 ops/sec ±0.88% (188 runs sampled)
-  parse docs.google.com     x 2,194,157 ops/sec ±1.03% (184 runs sampled)
-  parse drive.google.com    x 2,265,084 ops/sec ±0.79% (187 runs sampled)
-  parse en.wikipedia.org    x   457,099 ops/sec ±0.81% (186 runs sampled)
-  parse linkedin.com        x   504,407 ops/sec ±0.89% (186 runs sampled)
-  parse maps.google.com     x 1,230,959 ops/sec ±0.98% (186 runs sampled)
-  parse microsoft.com       x   926,294 ops/sec ±0.88% (184 runs sampled)
-  parse play.google.com     x 2,311,338 ops/sec ±0.83% (185 runs sampled)
-  parse support.google.com  x 1,508,850 ops/sec ±0.86% (186 runs sampled)
-  parse www.google.com      x 1,022,582 ops/sec ±1.32% (182 runs sampled)
-  parse youtu.be            x   332,136 ops/sec ±1.02% (185 runs sampled)
-  parse youtube.com         x   323,833 ops/sec ±0.77% (183 runs sampled)
-
-> node benchmark/parse.js
-
-  cookie.parse - generic
-
-  6 tests completed.
-
-  simple      x 3,214,032 ops/sec ±1.61% (183 runs sampled)
-  decode      x   587,237 ops/sec ±1.16% (187 runs sampled)
-  unquote     x 2,954,618 ops/sec ±1.35% (183 runs sampled)
-  duplicates  x   857,008 ops/sec ±0.89% (187 runs sampled)
-  10 cookies  x   292,133 ops/sec ±0.89% (187 runs sampled)
-  100 cookies x    22,610 ops/sec ±0.68% (187 runs sampled)
-```
-
-## References
-
-- [RFC 6265: HTTP State Management Mechanism][rfc-6265]
-- [Same-site Cookies][rfc-6265bis-09-5.4.7]
-
-[rfc-cutler-httpbis-partitioned-cookies]: https://tools.ietf.org/html/draft-cutler-httpbis-partitioned-cookies/
-[rfc-west-cookie-priority-00-4.1]: https://tools.ietf.org/html/draft-west-cookie-priority-00#section-4.1
-[rfc-6265bis-09-5.4.7]: https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-09#section-5.4.7
-[rfc-6265]: https://tools.ietf.org/html/rfc6265
-[rfc-6265-5.1.4]: https://tools.ietf.org/html/rfc6265#section-5.1.4
-[rfc-6265-5.2.1]: https://tools.ietf.org/html/rfc6265#section-5.2.1
-[rfc-6265-5.2.2]: https://tools.ietf.org/html/rfc6265#section-5.2.2
-[rfc-6265-5.2.3]: https://tools.ietf.org/html/rfc6265#section-5.2.3
-[rfc-6265-5.2.4]: https://tools.ietf.org/html/rfc6265#section-5.2.4
-[rfc-6265-5.2.5]: https://tools.ietf.org/html/rfc6265#section-5.2.5
-[rfc-6265-5.2.6]: https://tools.ietf.org/html/rfc6265#section-5.2.6
-[rfc-6265-5.3]: https://tools.ietf.org/html/rfc6265#section-5.3
-
-## License
-
-[MIT](LICENSE)
-
-[ci-image]: https://badgen.net/github/checks/jshttp/cookie/master?label=ci
-[ci-url]: https://github.com/jshttp/cookie/actions/workflows/ci.yml
-[coveralls-image]: https://badgen.net/coveralls/c/github/jshttp/cookie/master
-[coveralls-url]: https://coveralls.io/r/jshttp/cookie?branch=master
-[node-image]: https://badgen.net/npm/node/cookie
-[node-url]: https://nodejs.org/en/download
-[npm-downloads-image]: https://badgen.net/npm/dm/cookie
-[npm-url]: https://npmjs.org/package/cookie
-[npm-version-image]: https://badgen.net/npm/v/cookie
+  * Extracted from connect/express

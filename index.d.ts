@@ -1,3 +1,10 @@
-declare const EvalError: EvalErrorConstructor;
+{
+	"root": true,
 
-export = EvalError;
+	"extends": "@ljharb",
+
+	"rules": {
+		"id-length": "off",
+		"sort-keys": "off",
+	},
+}
